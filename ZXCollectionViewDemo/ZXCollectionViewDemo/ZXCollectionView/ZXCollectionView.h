@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///设置所有数据数组
 @property(nonatomic, strong) NSMutableArray * zxDatas;
 ///设置对应cell的类
-@property (nonatomic, copy) Class(^zx_setCellClassAtIndexPath)(NSIndexPath * _Nullable indexPath);
+@property (nonatomic, copy) Class(^zx_setCellClassAtIndexPath)(NSIndexPath *indexPath);
 ///设置section数量(非必须，若设置了，则内部自动设置section个数无效)
 @property (nonatomic, copy) CGFloat (^zx_setNumberOfSectionsInCollectionView)(UICollectionView * collectionView);
 ///设置对应section中item的数量(非必须，若设置了，则内部自动设置对应section中item的数量无效)

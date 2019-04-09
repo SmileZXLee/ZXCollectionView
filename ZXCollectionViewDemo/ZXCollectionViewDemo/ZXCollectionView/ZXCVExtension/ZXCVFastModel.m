@@ -9,9 +9,6 @@
 #import "ZXCVFastModel.h"
 #import "ZXCollectionViewConfig.h"
 @implementation ZXCVFastModel
-+(instancetype)new{
-    return [[self alloc] init];;
-}
 -(instancetype)init{
     if(self = [super init]){
         if(self.colCount || self.rowCount)return self;

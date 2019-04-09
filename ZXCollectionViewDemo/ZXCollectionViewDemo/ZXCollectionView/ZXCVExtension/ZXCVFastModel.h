@@ -16,7 +16,6 @@ typedef enum {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZXCVFastModel : NSObject
-+ (instancetype)new;
 /// cell间距，默认为10
 @property(nonatomic, assign)CGFloat margin;
 /// 垂直滚动时cell列数，默认为2
