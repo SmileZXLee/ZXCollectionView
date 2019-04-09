@@ -1,4 +1,16 @@
 # ZXCollectionView
+## 安装
+### 通过CocoaPods安装
+```ruby
+pod 'ZXCollectionView'
+```
+### 手动导入
+* 将ZXCollectionView拖入项目中。
+
+### 导入头文件
+```objective-c
+#import "ZXCollectionView.h"
+```
 ## 创建ZXCollectionView示例
 ### 创建一个单一布局的CollectionView
 * 在CollectionView所在的控制器中，此处定义的cell对应模型为ZXTestSingleCVModel
