@@ -11,7 +11,7 @@
 #import "ZXCollectionViewConfig.h"
 #import "ZXCVGetProName.h"
 @interface ZXCollectionView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-
+@property(nonatomic, strong)NSMutableArray *registedArr;
 @end
 @implementation ZXCollectionView
 #pragma mark - Perference
@@ -68,11 +68,14 @@
         }else{
             return nil;
         }
-        BOOL isExistNib = [self isExistNibWithClass:cellClass];
-        if(!isExistNib){
-            [self registerClass:cellClass forCellWithReuseIdentifier:className];
-        }else{
-            [self registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass(cellClass)];
+        if(![self.registedArr containsObject:NSStringFromClass(cellClass)]){
+            BOOL isExistNib = [self isExistNibWithClass:cellClass];
+            if(!isExistNib){
+                [self registerClass:cellClass forCellWithReuseIdentifier:className];
+            }else{
+                [self registerNib:[UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass(cellClass)];
+            }
+            [self.registedArr addObject:NSStringFromClass(cellClass)];
         }
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:className forIndexPath:indexPath];
         if(model){
@@ -112,11 +115,14 @@
                     
                 }
             }
-            BOOL isExistNib = [self isExistNibWithClass:headerCls];
-            if(!isExistNib){
-                [self registerClass:headerCls forSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(headerCls)];
-            }else{
-                [self registerNib:[UINib nibWithNibName:NSStringFromClass(headerCls) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass(headerCls)];
+            if(![self.registedArr containsObject:NSStringFromClass(headerCls)]){
+                BOOL isExistNib = [self isExistNibWithClass:headerCls];
+                if(!isExistNib){
+                    [self registerClass:headerCls forSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(headerCls)];
+                }else{
+                    [self registerNib:[UINib nibWithNibName:NSStringFromClass(headerCls) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass(headerCls)];
+                }
+                [self.registedArr addObject:NSStringFromClass(headerCls)];
             }
             headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(headerCls) forIndexPath:indexPath];
         }
@@ -137,11 +143,14 @@
                     footerCls = [footerView class];
                 }
             }
-            BOOL isExistNib = [self isExistNibWithClass:footerCls];
-            if(!isExistNib){
-                [self registerClass:footerCls forSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(footerCls)];
-            }else{
-                [self registerNib:[UINib nibWithNibName:NSStringFromClass(footerCls) bundle:nil] forSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(footerCls)];
+            if(![self.registedArr containsObject:NSStringFromClass(footerCls)]){
+                BOOL isExistNib = [self isExistNibWithClass:footerCls];
+                if(!isExistNib){
+                    [self registerClass:footerCls forSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(footerCls)];
+                }else{
+                    [self registerNib:[UINib nibWithNibName:NSStringFromClass(footerCls) bundle:nil] forSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(footerCls)];
+                }
+                [self.registedArr addObject:NSStringFromClass(footerCls)];
             }
             footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(footerCls) forIndexPath:indexPath];
         }
@@ -613,5 +622,12 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
     [self setZXCollectionView];
+}
+#pragma mark - 懒加载
+-(NSMutableArray *)registedArr{
+    if(!_registedArr){
+        _registedArr = [NSMutableArray array];
+    }
+    return _registedArr;
 }
 @end
