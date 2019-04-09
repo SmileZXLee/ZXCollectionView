@@ -31,10 +31,11 @@
     ZXCVFastModel *fastModel = [[ZXCVFastModel alloc]init];
     fastModel.colCount = 3;
     fastModel.itemHConstant = 30;
+    fastModel.superW = [UIScreen mainScreen].bounds.size.width;
     [self.collectionView zx_fastWithModel:fastModel];
     self.collectionView.zx_setItemSizeAtIndexPath = ^CGSize(NSIndexPath * _Nonnull indexPath, id  _Nonnull model, CGSize orgSize) {
         if(indexPath.row == 0){
-            CGFloat intmW = [self.collectionView zx_getItemWWithCol:1 margin:10 attachMargin:YES];;
+            CGFloat intmW = [self.collectionView zx_getItemWWithCol:1 margin:10 attachMargin:YES superW:fastModel.superW];;
             return CGSizeMake(intmW, intmW + 30);
         }
         return orgSize;

@@ -30,6 +30,7 @@
     ZXCVFastModel *fastModel = [[ZXCVFastModel alloc]init];
     fastModel.colCount = 3;
     fastModel.itemHConstant = 30;
+    fastModel.superW = [UIScreen mainScreen].bounds.size.width;
     [self.collectionView zx_fastWithModel:fastModel];
     self.collectionView.zxDatas = [self getData];
 }

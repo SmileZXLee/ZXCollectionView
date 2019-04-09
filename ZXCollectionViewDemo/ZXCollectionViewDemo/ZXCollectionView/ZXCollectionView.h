@@ -98,10 +98,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///scrollView开始拖拽事件
 @property (nonatomic, copy) void (^zx_scrollViewDidEndDragging)(UIScrollView *scrollView, BOOL willDecelerate);
 #pragma mark - 快速构建
-///计算itemW colCount：列数；margin：间距；attachMargin：是否计算上左右边距
--(CGFloat)zx_getItemWWithCol:(NSUInteger)colCount margin:(CGFloat)margin attachMargin:(BOOL)attachMargin;
-///计算itemH rowCount：行数；margin：间距；attachMargin：是否计算上左右边距
--(CGFloat)zx_getItemHWithCol:(NSUInteger)rowCount margin:(CGFloat)margin attachMargin:(BOOL)attachMargin;
+///计算itemW colCount：列数；margin：间距；attachMargin：是否计算上左右边距；superW：父控件宽度，若为0则默认为collectionView宽度
+-(CGFloat)zx_getItemWWithCol:(NSUInteger)colCount margin:(CGFloat)margin attachMargin:(BOOL)attachMargin superW:(CGFloat)superW;
+///计算itemH rowCount：行数；margin：间距；attachMargin：是否计算上左右边距；superH：父控件高度，若为0则默认为collectionView高度
+-(CGFloat)zx_getItemHWithCol:(NSUInteger)rowCount margin:(CGFloat)margin attachMargin:(BOOL)attachMargin superH:(CGFloat)superH;
 ///快速构建ZXCollectionView
 -(void)zx_fastWithModel:(nullable ZXCVFastModel *)fastModel;
 #pragma mark - UICollectionViewDataSource & UICollectionViewDelegate

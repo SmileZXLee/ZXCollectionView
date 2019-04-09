@@ -423,15 +423,15 @@
     return UIEdgeInsetsZero;
 }
 #pragma mark 计算itemW
--(CGFloat)zx_getItemWWithCol:(NSUInteger)colCount margin:(CGFloat)margin attachMargin:(BOOL)attachMargin{
+-(CGFloat)zx_getItemWWithCol:(NSUInteger)colCount margin:(CGFloat)margin attachMargin:(BOOL)attachMargin superW:(CGFloat)superW{
     CGFloat marginOffset = attachMargin ? 1 : -1;
-    CGFloat itemW = (self.frame.size.width - (colCount + marginOffset) * margin) / colCount - 1;
+    CGFloat itemW = ((superW ? superW :self.frame.size.width) - (colCount + marginOffset) * margin) / colCount - 1;
     return itemW;
 }
 #pragma mark 计算itemH
--(CGFloat)zx_getItemHWithCol:(NSUInteger)rowCount margin:(CGFloat)margin attachMargin:(BOOL)attachMargin{
+-(CGFloat)zx_getItemHWithCol:(NSUInteger)rowCount margin:(CGFloat)margin attachMargin:(BOOL)attachMargin superH:(CGFloat)superH{
     CGFloat marginOffset = attachMargin ? 1 : -1;
-    CGFloat itemH = (self.frame.size.height - (rowCount + marginOffset) * margin) / rowCount - 1;
+    CGFloat itemH = ((superH ? superH :self.frame.size.height) - (rowCount + marginOffset) * margin) / rowCount - 1;
     return itemH;
 }
 #pragma mark 快速构建ZXCollectionView
@@ -444,7 +444,7 @@
         CGFloat marginOffset = fastModel.attachMargin ? 1 : -1;
         if(fastModel.scrollDirection == ZXScrollDirectionVertical){
             flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-            CGFloat itemW = (fastModel.superW ? fastModel.superW :self.frame.size.width - (fastModel.colCount + marginOffset) * fastModel.margin) / fastModel.colCount - 1;
+            CGFloat itemW = ((fastModel.superW ? fastModel.superW :self.frame.size.width) - (fastModel.colCount + marginOffset) * fastModel.margin) / fastModel.colCount - 1;
             CGFloat itemH = 0;
             if(fastModel.itemH > 0){
                 itemH = fastModel.itemH;
@@ -461,7 +461,7 @@
             flowLayout.sectionInset = UIEdgeInsetsMake(fastModel.margin, fastModel.attachMargin ? fastModel.margin : 0, fastModel.margin, fastModel.attachMargin ? fastModel.margin : 0);
         }else{
             flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            CGFloat itemH = (fastModel.superH ? fastModel.superH : self.frame.size.height - (fastModel.rowCount + marginOffset) * fastModel.margin) / fastModel.rowCount - 1;
+            CGFloat itemH = ((fastModel.superH ? fastModel.superH : self.frame.size.height) - (fastModel.rowCount + marginOffset) * fastModel.margin) / fastModel.rowCount - 1;
             CGFloat itemW = 0;
             if(fastModel.itemW > 0){
                 itemW = fastModel.itemW;

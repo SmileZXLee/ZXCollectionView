@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setCollectionView];
+    
 }
 
 -(void)setCollectionView{
@@ -44,6 +45,8 @@
     };
     ZXCVFastModel *fastModel = [[ZXCVFastModel alloc]init];
     fastModel.colCount = 3;
+    NSLog(@"%lf",[UIScreen mainScreen].bounds.size.width);
+    fastModel.superW = [UIScreen mainScreen].bounds.size.width;
     fastModel.itemHConstant = 30;
     [self.collectionView zx_fastWithModel:fastModel];
     self.collectionView.zxDatas = [self getData];

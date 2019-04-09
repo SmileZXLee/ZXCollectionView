@@ -41,7 +41,9 @@
             [weakSelf.navigationController pushViewController:VC animated:YES];
         }
     };
-    [self.collectionView zx_fastWithModel:nil];
+    ZXCVFastModel *fastModel = [[ZXCVFastModel alloc]init];
+    fastModel.superW = [UIScreen mainScreen].bounds.size.width;
+    [self.collectionView zx_fastWithModel:fastModel];
     
     self.collectionView.zxDatas = [@[@"单一布局的CollectionView",@"多个Section的CollectionView",@"根据indexPath变换布局的CollectionView",@"感谢使用"]mutableCopy];
 }
