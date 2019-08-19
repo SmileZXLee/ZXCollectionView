@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = 'ZXCollectionView'
-s.version      = '1.0.3'
+s.version      = '1.0.4'
 s.summary      = '快速构建CollectionView'
 s.homepage     = 'https://github.com/SmileZXLee/ZXCollectionView'
 s.license      = 'MIT'
