@@ -453,7 +453,7 @@
         CGFloat marginOffset = fastModel.attachMargin ? 1 : -1;
         if(fastModel.scrollDirection == ZXScrollDirectionVertical){
             flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-            CGFloat itemW = ((fastModel.superW ? fastModel.superW :self.frame.size.width) - (fastModel.colCount + marginOffset) * fastModel.margin) / fastModel.colCount - 1;
+            CGFloat itemW = ((fastModel.superW ? fastModel.superW :self.frame.size.width) - (fastModel.colCount + marginOffset) * fastModel.margin) / fastModel.colCount;
             CGFloat itemH = 0;
             if(fastModel.itemH > 0){
                 itemH = fastModel.itemH;
@@ -470,7 +470,7 @@
             flowLayout.sectionInset = UIEdgeInsetsMake(fastModel.margin, fastModel.attachMargin ? fastModel.margin : 0, fastModel.margin, fastModel.attachMargin ? fastModel.margin : 0);
         }else{
             flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            CGFloat itemH = ((fastModel.superH ? fastModel.superH : self.frame.size.height) - (fastModel.rowCount + marginOffset) * fastModel.margin) / fastModel.rowCount - 1;
+            CGFloat itemH = ((fastModel.superH ? fastModel.superH : self.frame.size.height) - (fastModel.rowCount + marginOffset) * fastModel.margin) / fastModel.rowCount;
             CGFloat itemW = 0;
             if(fastModel.itemW > 0){
                 itemW = fastModel.itemW;
